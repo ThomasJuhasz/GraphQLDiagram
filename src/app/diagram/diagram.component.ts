@@ -1,3 +1,5 @@
+import * as Snap from 'snapsvg-cjs';
+
 import { Component, OnInit } from '@angular/core';
 import { DiagramScheme } from '../../models/diagram/DiagramScheme';
 import { DiagramLinkType } from '../../models/diagram/DiagramLinkType';
@@ -5,7 +7,7 @@ import { DiagramLinkType } from '../../models/diagram/DiagramLinkType';
 @Component({
   selector: 'app-diagram',
   templateUrl: './diagram.component.html',
-  styleUrls: ['./diagram.component.less']
+  styleUrls: ['./diagram.component.scss']
 })
 export class DiagramComponent implements OnInit {
   scheme: DiagramScheme;
@@ -13,6 +15,29 @@ export class DiagramComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.createTestData();
+    this.createSVGStage();
+  }
+
+  createSVGStage() {
+    const svg = Snap('#svg');
+
+    // Lets create big circle in the middle:
+
+    const line = svg.line(50, 100, 400, 400);
+
+    line.attr({ stroke: 'white' });
+
+    document.addEventListener('mousemove', evt => {
+      const {x, y} = { x: evt.clientX, y: evt.clientY };
+      line.attr({
+        x2: x,
+        y2: y
+      });
+    });
+  }
+
+  createTestData() {
     this.scheme = {
       name: 'MyScheme',
       objects: [
@@ -65,5 +90,4 @@ export class DiagramComponent implements OnInit {
       ]
     };
   }
-
 }
