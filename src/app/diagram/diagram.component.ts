@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import { DiagramScheme } from '../../models/diagram/DiagramScheme';
 import { DiagramLinkType } from '../../models/diagram/DiagramLinkType';
 import { AngularLine } from './shapes/AngularLine';
+import { StrokeType } from './shapes/StrokeType';
+import { Diagram } from './shapes/Diagram';
 
 @Component({
   selector: 'app-diagram',
@@ -23,16 +25,11 @@ export class DiagramComponent implements OnInit {
   createSVGStage() {
     const svg: Snap.Paper = Snap('#svg');
 
-    // Lets create big circle in the middle:
-    const line = new AngularLine(svg, 50, 50, 400, 400);
-
-    document.addEventListener('mousemove', evt => {
-      const {x, y} = { x: evt.clientX, y: evt.clientY };
-      line.redraw( 50, 50, x, y);
-    });
+    const diagram = new Diagram(svg);
   }
 
   createTestData() {
+    // unused for now
     this.scheme = {
       name: 'MyScheme',
       objects: [

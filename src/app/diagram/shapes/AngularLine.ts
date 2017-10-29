@@ -1,29 +1,46 @@
 import * as Snap from 'snapsvg';
 
-import { Point } from './Point';
 import { Shape } from './Shape';
+import { StrokeType } from './StrokeType';
 
 export class AngularLine extends Shape {
     line: Snap.Element;
+    arrowHead: Snap.Element;
 
     constructor(container: Snap.Paper,
                 private x1: number,
                 private y1: number,
                 private x2: number,
-                private y2: number) {
+                private y2: number,
+                private strokeType: StrokeType = StrokeType.Solid) {
 
         super(container);
 
         this.line = container.line(x1, y1, x2, y2);
 
-        this.line.attr({ stroke: 'white' });
+        this.line.attr({
+            stroke: 'white',
+            strokeWidth: 2
+        });
+
+        if (strokeType === StrokeType.Dotted) {
+            this.line.attr({
+                strokeLinecap: 'round',
+                strokeDasharray: '1, 5' });
+        } else if (strokeType === StrokeType.Dashed) {
+            this.line.attr({
+                strokeLinecap: 'round',
+                strokeDasharray: '4, 6' });
+        }
+
+        // TODO: create an arrowhead at the end of the line
+        // this.arrowHead = container.marker(x2, y2, 40, 40, 100, 100);
     }
 
-    redraw(x1: number, y1: number, x2: number, y2: number) {
-        this.x1 = x1;
-        this.y1 = y1;
-        this.x2 = x2;
-        this.y2 = y2;
-        this.line.attr({x1, y1, x2, y2});
+    move(x: number, y: number) {
+        this.x2 = x;
+        this.y2 = y;
+        this.line.attr({x2: x, y2: y});
+        // this.arrowHead.attr({points: [x, y]});
     }
 }
