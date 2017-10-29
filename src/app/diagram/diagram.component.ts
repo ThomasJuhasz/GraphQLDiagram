@@ -3,6 +3,7 @@ import * as Snap from 'snapsvg-cjs';
 import { Component, OnInit } from '@angular/core';
 import { DiagramScheme } from '../../models/diagram/DiagramScheme';
 import { DiagramLinkType } from '../../models/diagram/DiagramLinkType';
+import { AngularLine } from './shapes/AngularLine';
 
 @Component({
   selector: 'app-diagram',
@@ -20,20 +21,14 @@ export class DiagramComponent implements OnInit {
   }
 
   createSVGStage() {
-    const svg = Snap('#svg');
+    const svg: Snap.Paper = Snap('#svg');
 
     // Lets create big circle in the middle:
-
-    const line = svg.line(50, 100, 400, 400);
-
-    line.attr({ stroke: 'white' });
+    const line = new AngularLine(svg, 50, 50, 400, 400);
 
     document.addEventListener('mousemove', evt => {
       const {x, y} = { x: evt.clientX, y: evt.clientY };
-      line.attr({
-        x2: x,
-        y2: y
-      });
+      line.redraw( 50, 50, x, y);
     });
   }
 
