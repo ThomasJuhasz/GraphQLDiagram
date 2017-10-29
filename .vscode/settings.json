@@ -1,4 +1,7 @@
 {
   "files.autoSave": "onFocusChange",
-  "tslint.autoFixOnSave": true
+  "tslint.autoFixOnSave": true,
+  "prettier.typescriptEnable": ["typescript"],
+  "editor.formatOnSave": true,
+  "prettier.singleQuote": true
 }

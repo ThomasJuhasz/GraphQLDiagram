@@ -1,5 +1,5 @@
 export enum StrokeType {
-    Solid,
-    Dotted,
-    Dashed
+  Solid,
+  Dotted,
+  Dashed
 }

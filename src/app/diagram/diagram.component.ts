@@ -15,7 +15,7 @@ import { Diagram } from './shapes/Diagram';
 export class DiagramComponent implements OnInit {
   scheme: DiagramScheme;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.createTestData();
