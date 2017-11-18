@@ -1,5 +1,3 @@
-import * as Snap from 'snapsvg-cjs';
-
 import { Component, OnInit } from '@angular/core';
 import { DiagramScheme } from '../../models/diagram/DiagramScheme';
 import { DiagramLinkType } from '../../models/diagram/DiagramLinkType';
@@ -23,9 +21,9 @@ export class DiagramComponent implements OnInit {
   }
 
   createSVGStage() {
-    const svg: Snap.Paper = Snap('#svg');
+    // const svg: Snap.Paper = Snap('#svg');
 
-    const diagram = new Diagram(svg);
+    // const diagram = new Diagram(svg);
   }
 
   createTestData() {

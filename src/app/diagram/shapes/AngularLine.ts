@@ -1,14 +1,12 @@
-import * as Snap from 'snapsvg';
-
 import { Shape } from './Shape';
 import { StrokeType } from './StrokeType';
 
 export class AngularLine extends Shape {
-  line: Snap.Element;
-  arrowHead: Snap.Element;
+  line: any;
+  arrowHead: any;
 
   constructor(
-    container: Snap.Paper,
+    container: any,
     private x1: number,
     private y1: number,
     private x2: number,

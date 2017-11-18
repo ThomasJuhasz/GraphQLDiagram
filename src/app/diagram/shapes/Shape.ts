@@ -1,7 +1,5 @@
-import * as Snap from 'snapsvg';
-
 export abstract class Shape {
-  constructor(private container: Snap.Paper) {}
+  constructor(private container: any) {}
 
   /**
      * @description This method should be overrided in every child class

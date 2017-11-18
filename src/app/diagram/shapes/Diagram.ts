@@ -2,7 +2,7 @@ import { AngularLine } from './AngularLine';
 import { StrokeType } from './StrokeType';
 
 export class Diagram {
-  constructor(private container: Snap.Paper) {
+  constructor(private container: any) {
     this.drawLine();
   }
 
