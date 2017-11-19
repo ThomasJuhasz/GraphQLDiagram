@@ -66,13 +66,24 @@ export class ChartComponent implements OnInit {
 
     const pathData = lineFunction(lineData);
 
-    return this.svg
+    const line = this.svg
       .append('path')
       .attr('d', pathData)
-      .attr('stroke', 'white')
-      .attr('stroke-width', 2)
-      .attr('stroke-dasharray', '3, 3')
+      .attr('stroke-dasharray', '5, 3')
       .attr('fill', 'none');
+
+    setDefaultStyle();
+
+    line.on('mouseover', () => setHighlightedStyle());
+    line.on('mouseout', () => setDefaultStyle());
+
+    function setDefaultStyle() {
+      line.style('stroke-width', 2).attr('stroke', 'white');
+    }
+
+    function setHighlightedStyle() {
+      line.style('stroke-width', 3).attr('stroke', 'red');
+    }
   }
 
   drawRect(x, y) {
